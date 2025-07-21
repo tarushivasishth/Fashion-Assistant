@@ -12,11 +12,6 @@ df = pd.read_csv("datasets/df_balanced.csv")
 # load label encoders and models for each target
 encoders, models = load_models_encoders("saved_models/")
 
-# title
-st.set_page_config(page_title="AI Stylist", layout="wide")
-st.title("Your Personal Fashion Assistant...👗👕")
-st.write("Upload a clothing item image and get full outfit suggestions.")
-
 # image upload
 uploaded_file = st.file_uploader("Upload a clothing item image", type=['jpg', 'jpeg', 'png'])
 

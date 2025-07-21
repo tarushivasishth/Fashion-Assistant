@@ -15,6 +15,11 @@ from mapping import gender_map, base_colour_map, season_map, complementary_map
 import gdown
 import zipfile
 
+# title
+st.set_page_config(page_title="AI Stylist", layout="wide")
+st.title("Your Personal Fashion Assistant...👗👕")
+st.write("Upload a clothing item image and get full outfit suggestions.")
+
 # === CONFIG ===
 IMAGE_FOLDER = "images"
 ZIP_PATH = "images.zip"
@@ -26,7 +31,7 @@ if not os.path.exists(IMAGE_FOLDER):
 
     st.info("🗃️ Unzipping files...")
     with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
-        zip_ref.extractall(IMAGE_FOLDER)
+        zip_ref.extractall('.')
 
     st.success("✅ Images ready!")
 
