@@ -12,6 +12,23 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array # type: 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics.pairwise import cosine_similarity
 from mapping import gender_map, base_colour_map, season_map, complementary_map
+import gdown
+import zipfile
+
+# === CONFIG ===
+IMAGE_FOLDER = "images"
+ZIP_PATH = "images.zip"
+
+# === DOWNLOAD AND UNZIP IMAGES IF NOT ALREADY AVAILABLE ===
+if not os.path.exists(IMAGE_FOLDER):
+    st.info("📦 Downloading image assets...")
+    gdown.download(f"https://drive.google.com/file/d/100QthkMdfv6rQtHRFKE1ME9y1ux2Q23h/view?usp=sharing", ZIP_PATH, quiet=False)
+
+    st.info("🗃️ Unzipping files...")
+    with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
+        zip_ref.extractall(IMAGE_FOLDER)
+
+    st.success("✅ Images ready!")
 
 df = pd.read_csv("datasets/df_balanced.csv")
 
