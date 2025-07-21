@@ -15,10 +15,8 @@ from mapping import gender_map, base_colour_map, season_map, complementary_map
 import gdown
 import zipfile
 
-# title
+
 st.set_page_config(page_title="AI Stylist", layout="wide")
-st.title("Your Personal Fashion Assistant...👗👕")
-st.write("Upload a clothing item image and get full outfit suggestions.")
 
 # === CONFIG ===
 IMAGE_FOLDER = "images"

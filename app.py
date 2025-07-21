@@ -6,6 +6,10 @@ from PIL import Image
 import joblib
 from utils import recommend_outfit_items, load_models_encoders, extract_features
 
+# title
+st.title("Your Personal Fashion Assistant...👗👕")
+st.write("Upload a clothing item image and get full outfit suggestions.")
+
 # load dataframe(preprocessed and balanced one)
 df = pd.read_csv("datasets/df_balanced.csv")
 
