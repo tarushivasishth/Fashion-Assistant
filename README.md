@@ -2,6 +2,7 @@ FASHION ASSISTANT - OUTFIT RECOMMENDATION SYSTEM
 ================================================
 
 ![App Screenshot][app_ss.png] 
+
 Fashion Assistant is an AI-powered outfit recommendation app that helps users find the best clothing combinations based on input images. It uses a pre-trained ResNet50 model to extract image features and suggest matching items. The app is built using TensorFlow and deployed with Streamlit.
 
 ------------------------------------------------------------
