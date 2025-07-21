@@ -3,11 +3,12 @@ import numpy as np
 import pandas as pd
 import os
 import joblib
+import gzip
 import matplotlib.pyplot as plt
 from PIL import Image
-from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
-from tensorflow.keras.models import Model
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input # type: ignore
+from tensorflow.keras.models import Model # type: ignore
+from tensorflow.keras.preprocessing.image import load_img, img_to_array # type: ignore
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics.pairwise import cosine_similarity
 from mapping import gender_map, base_colour_map, season_map, complementary_map
@@ -33,14 +34,32 @@ def load_models_encoders(model_dir):
     models = {}
 
     for file in os.listdir(model_dir):
-        if file.endswith("_model.pkl"):
-            key = file.replace("_model.pkl", "")
-            models[key] = joblib.load(os.path.join(model_dir, file))
-        elif file.endswith("_encoder.pkl"):
-            key = file.replace("_encoder.pkl", "")
-            encoders[key] = joblib.load(os.path.join(model_dir, file))
-    
+        path = os.path.join(model_dir, file)
+
+        if file.endswith("_model.pkl.gz"):
+            key = file.replace("_model.pkl.gz", "")
+            with gzip.open(path, 'rb') as f:
+                models[key] = joblib.load(f)
+
+        elif file.endswith("_encoder.pkl.gz"):
+            key = file.replace("_encoder.pkl.gz", "")
+            with gzip.open(path, 'rb') as f:
+                encoders[key] = joblib.load(f)
+
     return encoders, models
+# def load_models_encoders(model_dir):
+#     encoders = {}
+#     models = {}
+
+#     for file in os.listdir(model_dir):
+#         if file.endswith("_model.pkl"):
+#             key = file.replace("_model.pkl", "")
+#             models[key] = joblib.load(os.path.join(model_dir, file))
+#         elif file.endswith("_encoder.pkl"):
+#             key = file.replace("_encoder.pkl", "")
+#             encoders[key] = joblib.load(os.path.join(model_dir, file))
+    
+#     return encoders, models
 
 # Features to use for similarity
 similarity_cols = ['baseColour', 'gender', 'season', 'usage']
