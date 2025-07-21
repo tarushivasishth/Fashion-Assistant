@@ -22,7 +22,7 @@ ZIP_PATH = "images.zip"
 # === DOWNLOAD AND UNZIP IMAGES IF NOT ALREADY AVAILABLE ===
 if not os.path.exists(IMAGE_FOLDER):
     st.info("📦 Downloading image assets...")
-    gdown.download(f"https://drive.google.com/file/d/100QthkMdfv6rQtHRFKE1ME9y1ux2Q23h/view?usp=sharing", ZIP_PATH, quiet=False)
+    gdown.download(f"https://drive.google.com/uc?id=100QthkMdfv6rQtHRFKE1ME9y1ux2Q23h", ZIP_PATH, quiet=False)
 
     st.info("🗃️ Unzipping files...")
     with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
