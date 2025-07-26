@@ -109,12 +109,14 @@ def recommend_outfit_items(pred_labels, df, image_dir='images', top_k=5):
     # Matching gender and season logic
     valid_genders = get_matching_gender(gender)
     valid_seasons = get_matching_season(season)
+    valid_colours = get_complementary_base_colours(base_colour)
 
     # Filter based on rules
     filtered_df = df[
         (df['subCategory'] != subcat) &
         (df['gender'].isin(valid_genders)) &
         (df['season'].isin(valid_seasons)) &
+        (df['baseColour'].isin(valid_colours)) &
         (df['usage'] == usage)
     ].copy()
 
